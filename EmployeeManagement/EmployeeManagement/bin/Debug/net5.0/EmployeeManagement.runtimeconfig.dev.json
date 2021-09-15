@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\miral\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\miral\\.nuget\\packages"
+    ]
+  }
+}
