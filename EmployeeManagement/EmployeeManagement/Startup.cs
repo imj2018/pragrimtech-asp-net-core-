@@ -30,8 +30,8 @@ namespace EmployeeManagement
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
-            ILogger<Startup> logger)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env
+            )
         {
 
             //  middleware
@@ -41,30 +41,27 @@ namespace EmployeeManagement
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
+            //DefaultFilesOptions defaultFilesOptions = new DefaultFilesOptions();
+            //defaultFilesOptions.DefaultFileNames.Clear();
+            //defaultFilesOptions.DefaultFileNames.Add("foo.html");
 
-            app.Use(async (context, next) =>
-            {
-                //await context.Response.WriteAsync("Hello from 1st Middleware!");
-                logger.LogInformation("MW1: Incoming Request"); 
-                await next();
-                logger.LogInformation("MW1: Outgoing Response");
+            //  "UseDefault files does not serve the default file it only changes the request path
+            //  to point to the default document..." UseStaticFiles will serve the
+            //  UseDefaultFiles (pointing to default.html) so it has to be called next
+            //
+            //app.UseDefaultFiles(defaultFilesOptions);
+            //app.UseStaticFiles();
 
-            });
-
-            app.Use(async (context, next) =>
-            {
-                logger.LogInformation("MW2: Incoming Request");
-                await next();
-                logger.LogInformation("MW2: Outgoing Response");
-
-            });
-
-
+            //  instead of above (same functionality)
+            // 
+            FileServerOptions fileServerOptions = new FileServerOptions();
+            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Clear();
+            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Add("foo.html");
+            app.UseFileServer(fileServerOptions);
+            
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("MW3: Request handled and response produced");
-                logger.LogInformation("MW3: Request handled and response produced");
+                await context.Response.WriteAsync("Hello World!");
 
             });
 
