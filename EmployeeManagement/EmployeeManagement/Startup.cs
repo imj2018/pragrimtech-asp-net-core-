@@ -38,32 +38,28 @@ namespace EmployeeManagement
             //  
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                DeveloperExceptionPageOptions developerExceptionPageOptions = new DeveloperExceptionPageOptions()
+                {
+                    SourceCodeLineCount = 10
+                };
+                //developerExceptionPageOptions.SourceCodeLineCount = 10;
+
+                app.UseDeveloperExceptionPage(developerExceptionPageOptions);
             }
 
-            //DefaultFilesOptions defaultFilesOptions = new DefaultFilesOptions();
-            //defaultFilesOptions.DefaultFileNames.Clear();
-            //defaultFilesOptions.DefaultFileNames.Add("foo.html");
-
-            //  "UseDefault files does not serve the default file it only changes the request path
-            //  to point to the default document..." UseStaticFiles will serve the
-            //  UseDefaultFiles (pointing to default.html) so it has to be called next
-            //
-            //app.UseDefaultFiles(defaultFilesOptions);
-            //app.UseStaticFiles();
-
-            //  instead of above (same functionality)
-            // 
-            FileServerOptions fileServerOptions = new FileServerOptions();
-            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Clear();
-            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Add("foo.html");
-            app.UseFileServer(fileServerOptions);
+            app.UseFileServer();
             
             app.Run(async (context) =>
             {
+                throw new Exception("Some error processing the request");
                 await context.Response.WriteAsync("Hello World!");
 
             });
+
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
 
 
         }
