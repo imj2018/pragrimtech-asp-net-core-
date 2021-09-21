@@ -28,10 +28,17 @@ namespace EmployeeManagement
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddMvc();
-            
+
             // work around
             //
+            //services.AddMvc(option => option.EnableEndpointRouting = false);
+
+
+            // AddMvc already calls AddMvc already calls AddMvcCore internally
+            // 
+            //services.AddMvcCore(option => option.EnableEndpointRouting = false);
             services.AddMvc(option => option.EnableEndpointRouting = false);
+
 
         }
 
