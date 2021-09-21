@@ -1,3 +1,4 @@
+using EmployeeManagement.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -38,6 +39,11 @@ namespace EmployeeManagement
             // 
             //services.AddMvcCore(option => option.EnableEndpointRouting = false);
             services.AddMvc(option => option.EnableEndpointRouting = false);
+
+
+            //  register/add the services to the ASP.NET Core dependency injection container
+            //  
+            services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>(); 
 
 
         }
