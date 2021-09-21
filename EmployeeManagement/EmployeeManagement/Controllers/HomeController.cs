@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EmployeeManagement.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,25 @@ namespace EmployeeManagement.Controllers
     //
     public class HomeController : Controller
     {
-        public JsonResult Index()
+        private IEmployeeRepository _employeeRepository;
+
+
+        //  inject the constructor with IEmployeeRepository 
+        //
+        public HomeController(IEmployeeRepository employeeRepository)
         {
-            return Json(new { Id = 1, name = "Pragim" });
+           _employeeRepository = employeeRepository;
+        }
+
+        //public JsonResult Index()
+        //{
+            //return Json(new { Id = 1, name = "Pragim" });
+
+        //}
+
+        public string Index()
+        {
+            return _employeeRepository.GetEmployee(1).Name;
         }
     }
 }
