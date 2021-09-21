@@ -27,10 +27,16 @@ namespace EmployeeManagement
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddMvc();
+            
+            // work around
+            //
+            services.AddMvc(option => option.EnableEndpointRouting = false);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostEnvironment env)
         {
 
             //  middleware
@@ -42,15 +48,18 @@ namespace EmployeeManagement
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.UseStaticFiles();
-            
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hosting Environment: " + env.EnvironmentName);
-
-            });
+            //  if a request for static files it will short circuit here, if not it and it is an mvc request
+            //  it will pass that to UseMvcWithDefaultRoute
+            // 
+            app.UseStaticFiles();
+            app.UseMvcWithDefaultRoute();
 
 
+            //app.Run(async (context) =>
+            //{
+
+            //    await context.Response.WriteAsync("Hello");
+            //});
 
 
         }
