@@ -71,7 +71,21 @@ namespace EmployeeManagement.Controllers
         public ViewResult Details()
         {
             Employee model = _employeeRepository.GetEmployee(1);
-            return View(model);
+            //return View(model);
+
+
+            //return View("Test");
+            //return View("~/MyViews/Test.cshtml");
+            //return View("MyViews/Test.cshtml");
+
+            //  by default it looks in the Home folder because the controller name is HomeController
+            //  use ../ to move up in the hierarchy to the Views folder, relative path so cshtml is
+            //  not needed
+            // 
+            //return View("../Test/Update");
+            //return View("../../MyViews/Test");
+            return View();
+
         }
     }
 }

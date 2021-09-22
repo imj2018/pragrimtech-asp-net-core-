@@ -32,3 +32,6 @@ C:\Users\miral\source\repos\pragrimtech-asp-net-core-\EmployeeManagement\Employe
 C:\Users\miral\source\repos\pragrimtech-asp-net-core-\EmployeeManagement\EmployeeManagement\obj\Debug\net5.0\EmployeeManagement.RazorTargetAssemblyInfo.cs
 C:\Users\miral\source\repos\pragrimtech-asp-net-core-\EmployeeManagement\EmployeeManagement\obj\Debug\net5.0\EmployeeManagement.Views.pdb
 C:\Users\miral\source\repos\pragrimtech-asp-net-core-\EmployeeManagement\EmployeeManagement\obj\Debug\net5.0\EmployeeManagement.csproj.CopyComplete
+C:\Users\miral\source\repos\pragrimtech-asp-net-core-\EmployeeManagement\EmployeeManagement\obj\Debug\net5.0\Razor\Views\Home\Test.cshtml.g.cs
+C:\Users\miral\source\repos\pragrimtech-asp-net-core-\EmployeeManagement\EmployeeManagement\obj\Debug\net5.0\Razor\MyViews\Test.cshtml.g.cs
+C:\Users\miral\source\repos\pragrimtech-asp-net-core-\EmployeeManagement\EmployeeManagement\obj\Debug\net5.0\Razor\Views\Test\Update.cshtml.g.cs
