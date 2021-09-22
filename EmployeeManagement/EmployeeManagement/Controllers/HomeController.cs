@@ -91,8 +91,14 @@ namespace EmployeeManagement.Controllers
             //
             //  "Employee" is the key to store the Employee model object in ViewData
             //
-            ViewData["Employee"] = model;
-            ViewData["PageTitle"] = "Employee Details";
+            //ViewData["Employee"] = model;
+            //ViewData["PageTitle"] = "Employee Details";
+
+
+            //  "ViewBag is a wrapper around View Data" also loosely/weakly typed
+            //  
+            ViewBag.Employee = model;
+            ViewBag.PageTitle = "Employee Details";
             return View();
 
         }
