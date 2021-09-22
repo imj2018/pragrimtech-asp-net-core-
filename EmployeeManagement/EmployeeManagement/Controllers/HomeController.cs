@@ -84,6 +84,15 @@ namespace EmployeeManagement.Controllers
             // 
             //return View("../Test/Update");
             //return View("../../MyViews/Test");
+
+
+            //  pass the Employee model object from the HomeController to the Details view
+            //  using ViewData a Dictionary of weakly typed objects
+            //
+            //  "Employee" is the key to store the Employee model object in ViewData
+            //
+            ViewData["Employee"] = model;
+            ViewData["PageTitle"] = "Employee Details";
             return View();
 
         }
