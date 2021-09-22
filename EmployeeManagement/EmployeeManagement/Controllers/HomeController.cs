@@ -97,9 +97,12 @@ namespace EmployeeManagement.Controllers
 
             //  "ViewBag is a wrapper around View Data" also loosely/weakly typed
             //  
-            ViewBag.Employee = model;
+            //ViewBag.Employee = model;
             ViewBag.PageTitle = "Employee Details";
-            return View();
+
+
+            //
+            return View(model);
 
         }
     }
