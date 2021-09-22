@@ -10,9 +10,18 @@ namespace EmployeeManagement.Controllers
     //  need to inherit from the Controller class in Microsoft.AspNetCore.Mvc
     //  to be able to format json data  
     //
+    //  "Controller
+    //  Handles the incoming http 
+    //  Builds the model And
+    //  Returns the Model data to the caller if we are building an API OR
+    //  Select a view and pass the model data to the view
+    //  The view then generates the required HTML to present the data"
+    // 
     public class HomeController : Controller
     {
+        //private IEmployeeRepository _employeeRepository;
         private IEmployeeRepository _employeeRepository;
+
 
 
         //  inject the constructor with IEmployeeRepository 
@@ -42,6 +51,27 @@ namespace EmployeeManagement.Controllers
         public string Index()
         {
             return _employeeRepository.GetEmployee(1).Name;
+        }
+
+
+        //  action methods
+        //
+        //public string Details()
+        //public JsonResult Details()
+        //public ObjectResult Details()
+        //{        
+        //    //return _employeeRepository.GetEmployee(1).Name;
+
+
+        //    Employee model = _employeeRepository.GetEmployee(1);
+        //    //return Json(model);
+        //    return new ObjectResult(model);
+        //}
+
+        public ViewResult Details()
+        {
+            Employee model = _employeeRepository.GetEmployee(1);
+            return View(model);
         }
     }
 }

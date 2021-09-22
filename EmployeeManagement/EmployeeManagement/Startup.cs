@@ -38,7 +38,10 @@ namespace EmployeeManagement
             // AddMvc already calls AddMvc already calls AddMvcCore internally
             // 
             //services.AddMvcCore(option => option.EnableEndpointRouting = false);
-            services.AddMvc(option => option.EnableEndpointRouting = false);
+            //services.AddMvc(option => option.EnableEndpointRouting = false);
+
+
+            services.AddMvc(option => option.EnableEndpointRouting = false).AddXmlSerializerFormatters();
 
 
             //  register/add the services to the ASP.NET Core dependency injection container
