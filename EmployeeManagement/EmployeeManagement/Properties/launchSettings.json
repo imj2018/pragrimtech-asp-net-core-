@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:65197",
+      "applicationUrl": "http://localhost:38505",
       "sslPort": 0
     }
   },
@@ -13,7 +13,7 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "MyKey": "Value of MyKey from Environment Variable"
+        "MyKey": "Value of MyKey from Environment Variables"
       }
     },
     "EmployeeManagement": {
@@ -23,6 +23,7 @@
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
+        //"MyKey": "Value of MyKey from environmentVariables"
       }
     }
   }

@@ -2,24 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-
-    <!-- In Process vs Out of Process
-    
-         Kestral/dotnet.exe is the internal web server it is cross platform and embedded in 
-         in ASP.NET core application 
-         
-         it can be internet facing directly to process requests or with a Reverse Proxy Server
-         ISS, Nginx, Apache
-         
-         
-    -->
-    <!--<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>-->
-    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\css\" />
-    <Folder Include="wwwroot\js\" />
-  </ItemGroup>
 
 </Project>
