@@ -15,8 +15,7 @@ namespace ConsoleApp1
                 new Employee() { ID = 103, Name = "Todd", Salary = 3000, Experience = 3 }
             };
 
-            IsPromotable isPromotable = new IsPromotable(Employee.ExperienceToPromote); //  pointing to this function
-            Employee.PromoteEmployee(employees, isPromotable);
+            Employee.PromoteEmployee(employees, employee => employee.Experience >= 5);
         }
     }
 
@@ -29,9 +28,9 @@ namespace ConsoleApp1
         public int Salary { get; set; }
         public int Experience { get; set; }
 
-        public static void PromoteEmployee(List<Employee> employeeList, IsPromotable IsEligibleToPromote) //  can use a delegate when you want to pass a function as a parameter
+        public static void PromoteEmployee(List<Employee> employees, IsPromotable IsEligibleToPromote) //  can use a delegate when you want to pass a function as a parameter
         {
-            foreach (Employee employee in employeeList)
+            foreach (Employee employee in employees)
             {
                 if (IsEligibleToPromote(employee))
                 {
