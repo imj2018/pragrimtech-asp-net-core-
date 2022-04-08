@@ -3,50 +3,45 @@ using System.Collections.Generic;
 
 namespace ConsoleApp1
 {
-    public delegate void SampleDelegate();
+    public delegate void SampleDelegate(out int number);
 
     class Program
     {
         static void Main(string[] args)
         {
-            //SampleDelegate del = new SampleDelegate(SampleClass.SampleMethodOne); //  pass function to delegate constructor
-            //del();
-
-            SampleDelegate del, del1, del2, del3, del4;
-            //del1 = new SampleDelegate(SampleClass.SampleMethodOne);
-            //del2 = new SampleDelegate(SampleClass.SampleMethodTwo);
-            //del3 = new SampleDelegate(SampleClass.SampleMethodThree);
-            //del4 = del1 + del2 + del3 - del2;
-
-            //del4 -= del2;
-            //del4();
-
-            del = new SampleDelegate(SampleClass.SampleMethodOne); 
+            SampleDelegate del = new SampleDelegate(SampleClass.SampleMethodOne);
             del += SampleClass.SampleMethodTwo;
-            del += SampleClass.SampleMethodThree;
-            del -= SampleClass.SampleMethodTwo;
-            del();
+            //del += SampleClass.SampleMethodThree;
+            //del += SampleClass.SampleMethodFour;
 
+            int DelegateOutputParameter = -1;
+            del(out DelegateOutputParameter);
+
+            Console.WriteLine(DelegateOutputParameter); //  return thing in the method invocation list
         }
     }
 
-        
     public class SampleClass
     {
-        //public delegate void SampleDelegate();
+        public static void SampleMethodOne(out int number)
+        {
+            number = 1;
+        }
 
-        public static void SampleMethodOne()
+        public static void SampleMethodTwo(out int number)
         {
-            Console.WriteLine("SampleMethodOne Invoked");
+            number = 2;
         }
-        public static void SampleMethodTwo()
-        {
-            Console.WriteLine("SampleMethodTwo Invoked");
-        }
-        public static void SampleMethodThree()
-        {
-            Console.WriteLine("SampleMethodThree Invoked");
-        }
+
+        //public static void SampleMethodThree(out int number)
+        //{
+        //    number = 3;
+        //}
+
+        //public static void SampleMethodFour(out int number)
+        //{
+        //    number = 4;
+        //}
 
     }
 
