@@ -16,6 +16,11 @@ namespace ConsoleApp1
             };
 
             Employee.PromoteEmployee(employees, employee => employee.Experience >= 5);
+
+            Console.WriteLine("");
+
+            IsPromotable isPromotable = new IsPromotable(Employee.SalaryToPromote);
+            Employee.PromoteEmployee(employees, isPromotable);
         }
     }
 
@@ -43,6 +48,18 @@ namespace ConsoleApp1
         public static bool ExperienceToPromote(Employee employee)
         {
             if (employee.Experience >= 5)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool SalaryToPromote(Employee employee)
+        {
+            if (employee.Salary >= 4000)
             {
                 return true;
             }
