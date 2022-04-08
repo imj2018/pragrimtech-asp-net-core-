@@ -41,8 +41,9 @@ namespace EmployeeManagement
                 endpoints.MapGet("/", async context =>
                 {
                     await context.Response
-                    .WriteAsync(_config["MyKey"]); // "MyKey":  "Value of MyKey from appsettings.json"
-                });
+                    //.WriteAsync(_config["MyKey"]); // "MyKey":  "Value of MyKey from appsettings.json"
+                .WriteAsync("Hello");
+                    });
             });
         }
     }
