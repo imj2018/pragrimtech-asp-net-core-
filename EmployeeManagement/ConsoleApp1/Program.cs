@@ -3,71 +3,51 @@ using System.Collections.Generic;
 
 namespace ConsoleApp1
 {
+    public delegate void SampleDelegate();
 
     class Program
     {
         static void Main(string[] args)
         {
-            List<Employee> employees = new List<Employee>() {
-                new Employee() { ID = 101, Name = "Mary", Salary = 5000, Experience = 5},
-                new Employee() { ID = 102, Name = "Mike", Salary = 4000, Experience = 4},
-                new Employee() { ID = 103, Name = "John", Salary = 6000, Experience = 6 },
-                new Employee() { ID = 103, Name = "Todd", Salary = 3000, Experience = 3 }
-            };
+            //SampleDelegate del = new SampleDelegate(SampleClass.SampleMethodOne); //  pass function to delegate constructor
+            //del();
 
-            Employee.PromoteEmployee(employees, employee => employee.Experience >= 5);
+            SampleDelegate del, del1, del2, del3, del4;
+            //del1 = new SampleDelegate(SampleClass.SampleMethodOne);
+            //del2 = new SampleDelegate(SampleClass.SampleMethodTwo);
+            //del3 = new SampleDelegate(SampleClass.SampleMethodThree);
+            //del4 = del1 + del2 + del3 - del2;
 
-            Console.WriteLine("");
+            //del4 -= del2;
+            //del4();
 
-            IsPromotable isPromotable = new IsPromotable(Employee.SalaryToPromote);
-            Employee.PromoteEmployee(employees, isPromotable);
+            del = new SampleDelegate(SampleClass.SampleMethodOne); 
+            del += SampleClass.SampleMethodTwo;
+            del += SampleClass.SampleMethodThree;
+            del -= SampleClass.SampleMethodTwo;
+            del();
+
         }
     }
 
-    delegate bool IsPromotable(Employee employee);
-
-    class Employee
+        
+    public class SampleClass
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public int Salary { get; set; }
-        public int Experience { get; set; }
+        //public delegate void SampleDelegate();
 
-        public static void PromoteEmployee(List<Employee> employees, IsPromotable IsEligibleToPromote) //  can use a delegate when you want to pass a function as a parameter
+        public static void SampleMethodOne()
         {
-            foreach (Employee employee in employees)
-            {
-                if (IsEligibleToPromote(employee))
-                {
-                    Console.WriteLine(employee.Name + " promoted");
-                }
-            }
-
+            Console.WriteLine("SampleMethodOne Invoked");
+        }
+        public static void SampleMethodTwo()
+        {
+            Console.WriteLine("SampleMethodTwo Invoked");
+        }
+        public static void SampleMethodThree()
+        {
+            Console.WriteLine("SampleMethodThree Invoked");
         }
 
-        public static bool ExperienceToPromote(Employee employee)
-        {
-            if (employee.Experience >= 5)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public static bool SalaryToPromote(Employee employee)
-        {
-            if (employee.Salary >= 4000)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
     }
 
 }
