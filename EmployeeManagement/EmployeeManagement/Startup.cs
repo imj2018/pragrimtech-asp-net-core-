@@ -28,37 +28,30 @@ namespace EmployeeManagement
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
+            //app.UseRouting();
 
-            app.Use(async (context, next) =>
-            {
-                //await context.Response.WriteAsync("Hello from 1st Middleware!");
-                logger.LogInformation("MW1: Incoming Request");
-                await next();
-                logger.LogInformation("MW1: Outgoing Request");
+            DefaultFilesOptions defaultFilesOptions = new DefaultFilesOptions();
+            defaultFilesOptions.DefaultFileNames.Clear();
+            defaultFilesOptions.DefaultFileNames.Add("foo.html");
 
-            });
+            //app.UseDefaultFiles(defaultFilesOptions); //wwwroot 
+            //app.UseStaticFiles(); 
 
-            app.Use(async (context, next) =>
-            {
-                //await context.Response.WriteAsync("Hello from 1st Middleware!");
-                logger.LogInformation("MW2: Incoming Request");
-                await next();
-                logger.LogInformation("MW2: Outgoing Request");
-
-            });
+            FileServerOptions fileServerOptions = new FileServerOptions();
+            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Clear();
+            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Add("foo.html");
+            app.UseFileServer(fileServerOptions);
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("MW3: Request Handled and response produced");
-                logger.LogInformation("MW3: Request Handled and response produced");
+                await context.Response.WriteAsync("Hello");
             });
         }
     }
