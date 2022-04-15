@@ -32,22 +32,16 @@ namespace EmployeeManagement
         {
             if (env.IsDevelopment())
             {
-                DeveloperExceptionPageOptions developerExceptionPageOptions = new DeveloperExceptionPageOptions()
-                {
-                    SourceCodeLineCount = 1
-                };
-
-                app.UseDeveloperExceptionPage(developerExceptionPageOptions);
+                    app.UseDeveloperExceptionPage();
             }
-
-            //app.UseRouting();
-
-            app.UseFileServer(); 
+            //else if (env.IsStaging() || env.IsProduction() || env.IsEnvironment("UAT"))
+            //{
+            //    app.UseExceptionHandler("/Error");
+            //}
 
             app.Run(async (context) =>
             {
-                throw new Exception("Some error processing the request");
-                await context.Response.WriteAsync("Hello");
+                await context.Response.WriteAsync("Hosting Enironment: " + env.EnvironmentName);
             });
 
         }
