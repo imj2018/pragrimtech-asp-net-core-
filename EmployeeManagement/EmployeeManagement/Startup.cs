@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,8 +24,10 @@ namespace EmployeeManagement
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services) //  dependency injection container
         {
+            services.AddMvc();
+            services.AddMvc(options => options.EnableEndpointRouting = false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,15 +37,9 @@ namespace EmployeeManagement
             {
                     app.UseDeveloperExceptionPage();
             }
-            //else if (env.IsStaging() || env.IsProduction() || env.IsEnvironment("UAT"))
-            //{
-            //    app.UseExceptionHandler("/Error");
-            //}
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hosting Enironment: " + env.EnvironmentName);
-            });
+            app.UseStaticFiles();
+            app.UseMvcWithDefaultRoute(); //  looks for homecontroller, index action 
 
         }
     }
