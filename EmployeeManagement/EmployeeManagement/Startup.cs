@@ -1,3 +1,4 @@
+using EmployeeManagement.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,9 +25,12 @@ namespace EmployeeManagement
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services) //  dependency injection container
+        public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options => options.EnableEndpointRouting = false); // will have AddMvcCore services
+            services.AddMvc(options => options.EnableEndpointRouting = false); 
+            services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>(); //  AddSingleton to add dependancy, if someone like HomeController requests
+                                                                                  //  the IEmployeeRepository services, create an instance of MockEmployeeRepository
+                                                                                  //  and inject the instance
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,7 +42,7 @@ namespace EmployeeManagement
             }
 
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute(); //  looks for homecontroller, index action 
+            app.UseMvcWithDefaultRoute();
 
         }
     }
