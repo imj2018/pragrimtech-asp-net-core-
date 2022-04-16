@@ -27,7 +27,7 @@ namespace EmployeeManagement
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options => options.EnableEndpointRouting = false); 
+            services.AddMvc(options => options.EnableEndpointRouting = false).AddXmlSerializerFormatters(); 
             services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>(); //  AddSingleton to add dependancy, if someone like HomeController requests
                                                                                   //  the IEmployeeRepository services, create an instance of MockEmployeeRepository
                                                                                   //  and inject the instance
